@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_estrutura.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css">
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.min.js"></script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+
+          var input = document.querySelector('input[name=tags]');
+          new Tagify(input);
+  
+          const switchInput2 = document.getElementById('publicPrivateSwitch_estru');
+          const statusDiv2 = document.getElementById('status_estru');
+          const visibilityField2 = document.getElementById('visibilidadeField_estru');
+    
+          statusDiv2.textContent = visibilityField2.value;
+  
+          switchInput2.addEventListener('change', () => {
+              if (switchInput2.checked) {
+                  statusDiv2.textContent = 'Público';
+                  visibilityField2.value = 'Público'; 
+              } else {
+                  statusDiv2.textContent = 'Privado';
+                  visibilityField2.value = 'Privado';
+              }
+          });
+      });
+    </script>
+    
+</head>
+<body>
+  {% include "components/carregamento.html" %}
+  {% include "components/concluido.html" %}
+  {% include "components/colab.html" %}
+  {% include "components/notificacao.html"%}
+  {% include "components/deleta.html"%}
+
+
+  <div class="estrutura-o">
+    <div class="paulo">    
+      {% include "components/nav.html" %}
+    </div>
+    
+      {% include "components/pop.html" %}
+
+    <form method="POST" action="/update/{{ idea[0] }}">
+        <input type="hidden" name="user_id" value="{{ idea[1] }}"> 
+        <input type="hidden" name="id" value="{{ idea[0] }}">
+        <input type="hidden" name="visibilidade" id="visibilidadeField_estru" value="{{idea[14]}}">
+            
+        <div class="titulo">
+          <div class="rectangle-4138"></div>
+          <div class="t-tulo">Título*</div>
+          <div class="nomeie-a-ideia">
+            <input type="text" name="titulo" placeholder="Nomeie a ideia..."  value="{{ idea[5] }}">
+          </div>
+        </div>
+
+        <div class="tags">
+          <div class="rectangle-41382"></div>
+          <div class="tags2">Tags</div>
+          <div class="utilize-v-rgulas-para-separar">
+            <input type="text" id="tags" placeholder="utilize vírgulas para separar" name="tags" value="{% for tag in tags %}{{ tag[1] }}{% if not loop.last %},{% endif %}{% endfor %}" style="padding-left: 20px; height:35px;">
+          </div>
+        </div>
+
+        <div class="visibilidade_estru">
+          <div class="visibilidade2_estru">Visibilidade</div>
+          <label class="switch_estru">
+            <input type="checkbox" id="publicPrivateSwitch_estru" {{ 'checked' if idea[14] == 'Público' else '' }}>
+            <span class="slider_estru"></span>
+          </label>
+          <div class="status_estru" id="status_estru">{{ idea[14] }}</div>
+        </div>
+
+        <div class="rectangle-41384"></div>
+        <div class="descri-o2">Descrição*</div>
+        <div class="qual-o-problema-oportunidade-que-pretende-solucionar">
+          <textarea name="descricao" placeholder="Qual o problema/oportunidade que pretende solucionar...">{{ idea[6] }}</textarea>
+        </div>
+        <div class="rectangle-41385"></div>
+        <div class="benef-cios2">Benefícios*</div>
+        <div class="quais-benef-cios-a-proposta-trar">
+          <textarea name="beneficios" placeholder="Quais benefícios a proposta trará...">{{ idea[9] }}</textarea>
+        </div>
+        <div class="rectangle-41386"></div>
+        <div class="recursos-necess-rios">Recursos necessários*</div>
+        <div class="quais-recursos-precisar-para-implementas-a-proposta">
+          <textarea name="recursos" placeholder="O que será necessário para implementar a proposta...">{{ idea[8] }}</textarea>
+        </div>
+        <div class="rectangle-41387"></div>
+        <div class="impactos">Impactos*</div>
+        <div class="qual-impacto-ir-causar-rna-empresa">
+          <textarea name="impactos" placeholder="Qual impacto irá causar na empresa...">{{ idea[7] }}</textarea>
+        </div>
+        <div class="rectangle-41388"></div>
+        <div class="resumo2">Resumo*</div>
+        <div class="sua-ideia-em-at-150-palavras">
+          <textarea name="resumo" placeholder="Sua ideia em até 300 palavras...">{{ idea[11] }}</textarea>
+        </div>
+        
+          <div class="data-de-in-cio">
+            <div class="data">
+                <div class="group-239186">
+                    <div class="rectangle-25" ></div>
+                    <div class="xx-xx-xx">
+                      {% if idea[12] is none or idea[12]=="None"%}
+                        <input type="text" placeholder="DD/MM/AAAA" id="data_inicio" name="data_inicio" style="text-align: center;">
+                      {% elif idea[12]!= "None" %}
+                      <input type="text" value="{{ idea[12] }}" placeholder="DD/MM/AAAA" id="data_inicio" name="data_inicio" style="text-align: center;">
+                      {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="data-de-in-cio2">Data de início</div>
+        </div>
+
+        <div class="data-de-implementa-o">
+            <div class="data-de-implementa-o2">Data de implementação</div>
+            <div class="data2">
+                <div class="group-239186">
+                    <div class="rectangle-252"></div>
+                    <div class="xx-xx-xx">
+                      {% if idea[13] is none or idea[13]=="None"%}
+                      <input type="text" placeholder="DD/MM/AAAA" id="data_implementacao" name="data_implementacao" style="text-align: center;">
+                      {% elif idea[13]!="None"%}
+                      <input type="text" value="{{ idea[13] }}" placeholder="DD/MM/AAAA" id="data_implementacao" name="data_implementacao" style="text-align: center;">
+                      {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="rectangle-41389"></div>
+        <div class="observa-es">Observações</div>
+        <div class="adicione-mais-informa-es">
+          {% if idea[10] is none or idea[10].strip() == "None" %}
+              <textarea name="observacoes" placeholder="Adicione mais informações..."></textarea>
+          {% else %}
+              <textarea name="observacoes" placeholder="Adicione mais informações...">{{ idea[10] }}</textarea>
+          {% endif %}
+        </div>
+
+        <a href="/minha_ideias"><img class="volta" src="{{ url_for('static', filename='imagem/volta.svg') }}" /></a>
+          
+        <div class="rectangle-28"></div>
+        <div class="rectangle-29"></div>
+        <a href="/estruturar/{{ idea[0] }}"><div class="cancelar2">cancelar</div></a>
+        <div class="rectangle-282"></div>
+        <div class="ideia-crua" style="cursor: pointer;" onclick="open_ideia()">ideia crua</div>
+        <div class="colab_icon2" ><img onclick="opencolab()" src="{{ url_for('static', filename='imagem/colab_icon.svg') }}"/></div>
+        <button type="submit" class="salvar2">salvar</button>
+
+    </form>
+
+    <form method="POST" action="/baixar">
+        <div class="rectangle-283"></div>
+        <input type="hidden" name="id" value="{{ idea[0] }}">
+        <button type="submit" class="baixar">baixar</button>
+    </form>
+       
+        <div class="rectangle-284"></div>
+        <div onclick="deletar()" class="excluir">excluir</div>
+        
+  </div>
+
+   
+  {% include "components/ideiacrua.html" %}
+  {% include "components/rodape.html" %}
+  
+
+</body>
+</html>
+

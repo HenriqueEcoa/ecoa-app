@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_pagina.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css">
+    <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="paulo">    
+        {% include "components/nav.html" %}
+    </div>
+    {% include "components/carregamento.html" %}
+  {% include "components/concluido.html" %}
+     {% include "components/pop.html" %}
+  
+     <div class="busca">
+        <div class="retangulo-azul">
+            {% if ideas %}
+                {% for idea in ideas %}
+                <a href="/estruturar/{{idea[0]}}" style="text-decoration: none;">
+                  <div class="caixa">
+                      <div class="receita-de-cookies-com-gotas-de-chocolate">
+                          {{idea[5]}}
+                        </div>
+                        <br>
+                        <div class="line-1"></div>
+                        <div class="mussum-ipsum-cacilds-vidis-litro-abertis-detraxit-consequat-et-quo-num-tendi-nada-praesent-vel-viverra-nisi-mauris-aliquet-nunc-non-turpis-scelerisque-eget-nulla-id-gravida">
+                              <p>{{idea[7]}}</p>
+                        </div>
+                  </div>
+                </a>
+                {% endfor %}
+            </div>
+            {% endif %}
+          
+       
+        <a href="/ideia"><img class="volta" src="{{ url_for('static', filename='imagem/volta.svg') }}"></a>
+
+        <form id="searchForm" action="/search" method="GET">
+            <input type="text" id="keyword" name="keyword" class="rectangle-6713" value={{keyword}}>
+            <button type="submit" class="icon-button"><img class="icon"  src="{{ url_for('static', filename='imagem/busca.svg') }}" alt="Ícone de pesquisa" /></button>
+        </form>
+
+
+      </div>
+
+
+     
+
+     <style>
+.busca,.busca * {
+  box-sizing: border-box;
+}
+.busca {
+  background: #ffffff;
+  overflow: hidden;
+}
+.retangulo-azul{
+  display: flex;
+  flex-direction: column;
+  gap: 19px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 826px;
+  margin-bottom: 200px;
+  position: absolute;
+  left: 297px;
+  top: 181px;
+}
+
+.caixa{
+    margin-top: 100px;
+}
+.receita-de-cookies-com-gotas-de-chocolate {
+  color: #0b1b3d;
+  text-align: left;
+  font-family: "Poppins-SemiBold", sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0.02em;
+  font-weight: 600;
+  position: relative;
+  align-self: stretch;
+  height: 19px;
+}
+.line-1 {
+  margin-top: -3px;
+  border-style: solid;
+  border-color: #75ebf5;
+  border-width: 3px 0 0 0;
+  align-self: stretch;
+  flex-shrink: 0;
+  height: 0px;
+  position: relative;
+}
+.mussum-ipsum-cacilds-vidis-litro-abertis-detraxit-consequat-et-quo-num-tendi-nada-praesent-vel-viverra-nisi-mauris-aliquet-nunc-non-turpis-scelerisque-eget-nulla-id-gravida {
+  color: #000000;
+  text-align:justify;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  line-height: 25px;
+  letter-spacing: 0.005em;
+  font-weight: 400;
+  position: relative;
+  width: 826px;
+  height: 70px;
+  
+  display: -webkit-box;     
+  display: -moz-box;        
+  display: -ms-flexbox;     
+  display: -o-box;          
+  display: box; 
+
+  -webkit-box-orient: vertical;  
+  -moz-box-orient: vertical;    
+  -o-box-orient: vertical;       
+  box-orient: vertical;         
+
+  overflow: hidden;          
+  
+  -webkit-line-clamp: 3;     
+  line-clamp: 3;          
+}
+
+
+.volta {
+  width: 72px;
+  height: 17px;
+  position: absolute;
+  left: 273px;
+  top: 148px;
+  overflow: visible;
+}
+.rectangle-6713 {
+  background: #f2f2f2;
+  border-radius: 7.82px;
+  width: 476px;
+  height: 31px;
+  position: absolute;
+  left: 297px;
+  top: 202px;
+  border: none;
+}
+.icon-button {
+  position: absolute;
+  right: 47.16%;
+  left: 51%;
+  bottom: 75.64%;
+  top: 22.89%;
+  border: none;
+  background: none;
+  padding: 0;
+  width: 12px; 
+  height: 12px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ 
+}
+
+.icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+
+</style>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<div id="modal-delete" class="modal-container">
+    <div class="modal delete-3">
+            <div class="deseja-excluir-esta-proposta">
+              <span>
+                <span class="deseja-excluir-esta-proposta-span">Deseja excluir</span>
+                <span class="deseja-excluir-esta-proposta-span2">esta proposta?</span>
+              </span>
+            </div>
+            <div id="fechar" class="cancelar_2">cancelar</div>
+
+            <form method="POST" action="/delete/{{ idea[0] }}">
+              <input type="hidden" name="id" value="{{ idea[0] }}">
+              <button class="excluir2" type="submit">excluir</button>
+          </form>
+          
+        </div> 
+</div>
+
+<style>
+
+.delete-3,
+.delete-3 * {
+  box-sizing: border-box;
+}
+.delete-3 {
+  border-radius: 8px;
+  height: 105px;
+  width: 563px;
+  position: relative;
+  background-color: #f2f2f2;
+}
+
+.deseja-excluir-esta-proposta {
+  color: #000000;
+  text-align: left;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  line-height: 0undefined;
+  letter-spacing: 0.5px;
+  font-weight: 400;
+  position: absolute;
+  right: 33.9%;
+  left: 9.43%;
+  width: 56.67%;
+  bottom: 64.03%;
+  top: 25.66%;
+  height: 10.31%;
+}
+.deseja-excluir-esta-proposta-span {
+  color: #000000;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  line-height: 15px;
+  letter-spacing: 0.5px;
+  font-weight: 400;
+}
+.deseja-excluir-esta-proposta-span2 {
+  color: #000000;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  font-weight: 400;
+}
+
+.cancelar_2 {
+  color: #0b1b3d;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  position: absolute;
+  right: 32.3%;
+  left: 53.83%;
+  width: 13.86%;
+  bottom: 22.09%;
+  top: 64.37%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 106px;
+  height: 27px;
+  background-color: #ffda4f;
+  border-radius: 8px;
+}
+
+.excluir2 {
+  color: #0b1b3d;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  line-height: 15px;
+  letter-spacing: 0.5px;
+  font-weight: 400;
+  position: absolute;
+  right: 11.65%;
+  left: 74.49%;
+  width: 13.86%;
+  bottom: 22.09%;
+  top: 64.37%;
+  height: 11.54%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffda4f;
+  border: none;
+  width: 106px;
+  height: 27px;
+  border-radius: 8px;
+  margin-left: 16px;
+}
+.modal-container{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #1212124b;
+  z-index: 999;
+  align-items: center;
+  justify-content: center;
+  display: none;
+}
+
+@keyframes animate-modal {
+  from{
+      opacity: 0;
+      transform: translate3d(0, -20px, 0);
+  }
+
+  to{
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+  }
+}
+
+.modal-container.mostrar{
+  display: flex;
+}
+
+.mostrar .modal{
+  animation: animate-modal .3s;
+} 
+</style>

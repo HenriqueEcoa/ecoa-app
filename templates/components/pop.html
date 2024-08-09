@@ -1,0 +1,482 @@
+<div id="modal-container" class="modal-container">
+  <div class="pop-up">
+          <div class="fecha">
+              <div class="rectangle-24"></div>
+              <div class="x" id="fechar" style="cursor: pointer;">x</div>
+          </div>
+          <div class="caixa">
+              <form id="addForm" method="POST" action="/add" enctype="multipart/form-data">
+                  <div class="rectangle-23"></div>
+                  <input type="hidden" name="user_id" placeholder="ID do Usuário" required value="{{current_user.username}}">
+                  <input type="hidden" name="visibilidade" id="visibilidadeField" value="Privado">
+
+                  <div class="rectangle-21">
+                    <textarea name="idea" id="idea_chat" placeholder="Escreva aqui sua ideia ..." required></textarea>
+                    <div class="escreva-aqui-sua-ideia"></div>
+                  </div>
+                  <div class="quando-deseja-ser-lembrado-a">
+                      Quando deseja ser lembrado(a)?
+                  </div>
+
+                  <div class="data">
+                    <input type="text" id="data" name="data" placeholder="DD/MM/AA" >
+                  </div>
+
+                  <div class="relogio">
+                    <input type="text" id="hora" name="hora" placeholder="HH:MM" >
+                  </div>
+
+                  <img class="calendar" src="{{ url_for('static', filename='imagem/calendar.svg') }}" />
+                  <img class="watch" src="{{ url_for('static', filename='imagem/watch.svg') }}" />
+
+                  <div class="tags_caixa">
+                    <div class="gostaria-de-adicionar-tags" style="font-size:14px;line-height: 24px;letter-spacing: 0.5px;font-weight: 400;">Gostaria de adicionar tags?</div>
+                    <img class="tag_icon" src="{{ url_for('static', filename='imagem/tag.svg') }}"/>
+                  </div>
+
+                  <input type="text" class="tags_bit" id="tags" name="tags" placeholder="Utilize vírgulas para separar..."><br>
+                  
+                  
+                  <div  onclick="carregamento()" class="rectangle-28">
+                      <button type="submit"  class="enviar2">enviar</button>
+                  </div>
+                
+                <div class="visibilidade">
+                  <h6 style="font-weight: 400; font-size: 14px;">Visibilidade</h6>
+                </div>
+                  <label class="switch">
+                    <input type="checkbox" id="publicPrivateSwitch">
+                    <span class="slider"></span>
+                </label>
+                <div class="status" id="status">Privado</div>
+            
+            
+              </form>
+
+              <script>
+                var input = document.querySelector('input[name=tags]');
+                new Tagify(input);
+
+              </script>
+            <script>
+
+              const switchInput = document.getElementById('publicPrivateSwitch');
+              const statusDiv = document.getElementById('status');
+              const visibilityField = document.getElementById('visibilidadeField');
+
+              switchInput.addEventListener('change', () => {
+                  if (switchInput.checked) {
+                      statusDiv.textContent = 'Público';
+                      visibilityField.value = 'Público'; 
+                  } else {
+                      statusDiv.textContent = 'Privado';
+                      visibilityField.value = 'Privado';
+                  }
+              });
+
+          </script>
+        </div>
+  </div>
+</div>
+
+<style>
+
+.visibilidade{
+  position: absolute;
+  left: 545px;
+  top: 270px;
+}
+
+.tags_bit{
+  overflow-x: auto;
+}
+
+.switch {
+          position: relative;
+          top:192px ;
+          left: 500px;
+          display: inline-block;
+          width: 60px;
+          height: 34px;
+      }
+      .switch input {
+          opacity: 0;
+          width: 0;
+          height: 0;
+      }
+      .slider {
+          position: absolute;
+          cursor: pointer;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: #f2f2f2;
+          transition: .4s;
+          border-radius: 34px;
+      }
+      .slider:before {
+          position: absolute;
+          content: "";
+          height: 26px;
+          width: 26px;
+          border-radius: 50%;
+          left: 4px;
+          bottom: 4px;
+          background-image: url("{{ url_for('static', filename='imagem/lock.svg') }}");
+          background-size: contain;
+          transition: .4s;
+      }
+      
+      input:checked + .slider {
+          background-color: #75ecf5;
+      }
+      input:checked + .slider:before {
+          transform: translateX(26px);
+          background-image: url("{{ url_for('static', filename='imagem/lock-open.svg') }}");
+          background-size: contain;
+      }
+      .status {
+          margin-top: 10px;
+      }
+
+
+textarea {
+  width: 100%;
+  height: 100%;
+  background-color: #f2f2f2;
+  overflow-y: scroll;
+  resize: none;
+  border-radius: 5px;
+  border: none;
+  font-size: 12px;
+}  
+.modal-container{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  align-items: center;
+  justify-content: center;
+  display: none;
+}
+
+@keyframes animate-modal {
+  from{
+      opacity: 0;
+      transform: translate3d(0, -20px, 0);
+  }
+
+  to{
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+  }
+}
+
+.modal-container.mostrar{
+  display: flex;
+}
+
+.mostrar .modal{
+  animation: animate-modal .3s;
+} 
+
+.pop-up,
+.pop-up * {
+  box-sizing: border-box;
+}
+.pop-up {
+  position: relative;
+  width: 726px;
+  min-height: 390px;
+  padding: 50px;
+  border-radius: 7.5px;
+}
+.fecha {
+  width: 36px;
+  height: 68.4px;
+  position: static;
+}
+.rectangle-24 {
+  background: #fdfafa;
+  border-radius: 15px;
+  width: 36px;
+  height: 68.4px;
+  position: absolute;
+  left: 690px;
+  top: 0px;
+}
+.x {
+  color: #0b1b3d;
+  text-align: center;
+  font-family: "DmSans-Light", sans-serif;
+  font-size: 24px;
+  line-height: 12px;
+  letter-spacing: 0.5px;
+  font-weight: 300;
+  position: absolute;
+  left: 699px;
+  top: 12.35px;
+  width: 17.06px;
+  height: 15.67px;
+}
+
+.rectangle-23 {
+  background: #fdfafa;
+  border-radius: 7.5px;
+  width: 726px;
+  height: 483.55px;
+  position: absolute;
+  left: 0px;
+  top: 29.45px;
+}
+.rectangle-21 {
+  border-radius: 12px;
+  width: 684px;
+  height: 225px;
+  position: absolute;
+  left: 21px;
+  top: 49px;
+  overflow: visible;
+}
+.escreva-aqui-sua-ideia {
+  color: rgba(0, 90, 127, 0.5);
+  text-align: left;
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  font-weight: 300;
+  position: absolute;
+  left: 121px;
+  top: 68.27px;
+  width: 335.77px;
+  height: 14.39px;
+}
+.quando-deseja-ser-lembrado-a {
+  color: #0b1b3d;
+  text-align: left;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  font-weight: 400;
+  position: absolute;
+  left: 31px;
+  top: 390px;
+  width: 336px;
+  height: 15px;
+}
+.enviar {
+  width: 100px;
+  height: 27px;
+  position: static;
+}
+.rectangle-28 {
+  background: #ffda4e;
+  border-radius: 7.82px;
+  width: 13.77%;
+  height: 8.26%;
+  position: absolute;
+  right: 2.89%;
+  left: 83.33%;
+  bottom: 3.31%;
+  top: 119.42%;
+}
+
+.enviar2 {
+  color: #0b1b3d;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  line-height: 15px;
+  letter-spacing: 0.5px;
+  font-weight: 400;
+  position: absolute;
+  right: 3.99%;
+  left: 45.44%;
+  width: 11.57%;
+  bottom: 4.68%;
+  top: 50.19%;
+  height: 2.53%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffda4e;
+  border: none;
+}
+.data {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
+  width: 162px;
+  position: absolute;
+  left: 76px;
+  top: 425px;
+}
+.group-239186 {
+  flex-shrink: 0;
+  width: 36px;
+  height: 34.88px;
+  position: static;
+}
+.rectangle-25 {
+  border-radius: 0px;
+  width: 36px;
+  height: 34.88px;
+  position: absolute;
+  left: 0px;
+  top: 0.12px;
+  overflow: visible;
+}
+
+.div {
+  color: #000000;
+  text-align: left;
+  font-family: "Poppins-Light", sans-serif;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  font-weight: 300;
+  position: relative;
+}
+.group-239187 {
+  flex-shrink: 0;
+  width: 36px;
+  height: 34.88px;
+  position: static;
+}
+.rectangle-252 {
+  border-radius: 0px;
+  width: 36px;
+  height: 34.88px;
+  position: absolute;
+  left: 63px;
+  top: 0.12px;
+  overflow: visible;
+}
+.group-239185 {
+  flex-shrink: 0;
+  width: 36.26px;
+  height: 35.12px;
+  position: static;
+}
+.rectangle-26 {
+  border-radius: 0px;
+  width: 36.26px;
+  height: 35.12px;
+  position: absolute;
+  left: 126px;
+  top: 0px;
+  overflow: visible;
+}
+
+.relogio {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+  justify-content: flex-start;
+  position: absolute;
+  left: 404px;
+  top: 430px;
+}
+.rectangle-253 {
+  border-radius: 0px;
+  width: 36px;
+  height: 34.88px;
+  position: absolute;
+  left: 0px;
+  top: 0.12px;
+  overflow: visible;
+}
+.div2 {
+  color: #0b1b3d;
+  text-align: left;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  font-weight: 300;
+  position: relative;
+}
+.rectangle-262 {
+  border-radius: 0px;
+  width: 36.26px;
+  height: 35.12px;
+  position: absolute;
+  left: 55px;
+  top: 0px;
+  overflow: visible;
+}
+
+.calendar {
+  border-radius: 0px;
+  width: 29px;
+  height: 27px;
+  position: absolute;
+  left: 31px;
+  top: 430px;
+  overflow: visible;
+}
+.watch {
+  width: 34px;
+  height: 34px;
+  position: absolute;
+  left: 330px;
+  top: 430px;
+  overflow: visible;
+}
+.tags_caixa > div {
+  position: absolute;
+  left: 31px;
+  top: 300px;
+}
+.tags_caixa >img{
+  position: absolute;
+  left: 31px;
+  top: 330px;
+  width: 34px;
+  height:32px ;
+}
+.data > input{
+  background-color: #f2f2f2;
+  border: none;
+  text-align: center;
+  width: 162px;
+  height:35px ;
+  border-radius: 8px;
+}
+.relogio > input{
+  background-color: #f2f2f2;
+  border: none;
+  text-align: center;
+  justify-content: center;
+  position: absolute;
+  left: -30px;
+  top: 0px;
+  width: 89px;
+  height: 35px;
+  border-radius: 8px;
+ 
+}
+.tagify{
+  background-color: #f2f2f2;
+  border: none;
+  width: 387px;
+  height: 35px;
+  border-radius: 8px;
+  margin-top: 12px;
+  font-size: 12px;
+  position: absolute;
+  left: 76px;
+  top: 320px;
+}
+
+</style>
+
+       

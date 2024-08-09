@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css">
+    <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.min.js"></script>
+    <script src="static/script.js"></script>
+</head>
+<body>
+
+  {% include "components/carregamento.html" %}
+  {% include "components/concluido.html" %}
+ 
+  {% if status == '0' %}
+        <script>
+            confirmacao()
+        </script>
+  {% endif %}
+
+       
+    <div class="paulo">    
+      {% include "components/nav.html"%}
+    </div>
+    
+  {% include "components/pop.html" %}
+  {% include "components/tag.html" %}
+  {% include "components/notificacao.html"%}
+
+  
+  <div class="paulo">    
+    <div class="t-tulo">
+      <div class="nunca">Nunca foi tão fácil dar <br>uma ideia!</div>
+      <div
+        class="o-capit-captura-as-suas-ideias-e-auxilia-na-estrutura-o-de-propostas-de-inova-o"
+      >
+        O CAPIT captura as suas ideias e auxilia na estruturação de propostas de
+        inovação.
+      </div>
+      <div class="cta2" onclick="openModal()">
+        <div class="envie-sua-ideia2">Envie sua ideia </div>
+        <img class="add2" src="static/imagem/add-2.svg" />
+      </div>
+    </div>
+
+    
+    <div class="busca">
+      <!--Ajustes fazer tipo butao-->
+      <div class="div-botao">
+        <img onclick="openTag()" class="icon-tabler-icons-adjustments"  src="static/imagem/adjustments-2.svg" />
+      </div>
+      
+      <a href="/minha_ideias"><div class="div-botao2">
+       <img src="static/imagem/Group 239208.svg"/>
+      </div></a>
+      
+        <form id="searchForm" action="/search" method="GET">
+            <input type="text" id="keyword" name="keyword" class="rectangle-6713" placeholder="Digite aqui ">
+            <button type="submit" class="icon-button"><img class="icon"  src="static/imagem/busca.svg" alt="Ícone de pesquisa" /></button>
+        </form>
+
+    </div>
+  </div>
+
+    {% include "components/ideias_p_colab.html" %}
+    
+    {% include "components/rodape.html"%}
+    
+</body>
+</html>
+
+
+
+
+

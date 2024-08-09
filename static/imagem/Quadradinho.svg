@@ -1,0 +1,12 @@
+<svg width="193" height="194" viewBox="0 0 193 194" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path id="Quadradinho" d="M0.5 8C0.5 3.58172 4.08172 0 8.5 0H184.5C188.918 0 192.5 3.58172 192.5 8V186C192.5 190.418 188.918 194 184.5 194H8.5C4.08173 194 0.5 190.418 0.5 186V8Z" fill="url(#paint0_linear_96_587)"/>
+<defs>
+<linearGradient id="paint0_linear_96_587" x1="96.5" y1="0" x2="96.5" y2="194" gradientUnits="userSpaceOnUse">
+<stop offset="0.08" stop-color="#B6F6FB"/>
+<stop offset="0.285" stop-color="#75EBF5"/>
+<stop offset="0.46" stop-color="#6ED9E3"/>
+<stop offset="0.75" stop-color="#4FABB3"/>
+<stop offset="1" stop-color="#2A7D84"/>
+</linearGradient>
+</defs>
+</svg>

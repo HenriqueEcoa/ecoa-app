@@ -1,0 +1,95 @@
+<div id="modal-tag" class="modal-container">
+  <div class="modal-tag">
+    <h4 style="font-weight: 400;">Busque por tags:</h4>
+      <form action="/search_tags" method="post">
+          <div class="tag-columns">
+              {% for tag in tags %}
+              <div class="tag-item">
+                  <input type="checkbox" name="tags" value="{{ tag[1] }}"> {{ tag[1] }}
+              </div>
+              {% endfor %}
+          </div>
+          <input class="buscar_tags" type="submit" value="buscar">
+      </form>
+  </div>
+</div>
+
+
+<style>
+ .modal-container {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #1212124b;
+  z-index: 999;
+  align-items: center;
+  justify-content: center;
+  display: none; /* Inicialmente oculto */
+}
+
+@keyframes animate-modal {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -20px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.modal-container.mostrar {
+  display: flex;
+  animation: animate-modal .3s;
+}
+
+.modal-tag {
+  width: 726px; 
+  height: 236px;
+  background-color: #fbfafa;
+  backdrop-filter: blur(10px);
+  padding: 10px;
+  padding-left: 21px;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.tag-columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  max-height: calc(216px - 100px); 
+  overflow-y: auto;
+  padding-right: 3px; 
+  margin-bottom: 12px;
+}
+
+.tag-item {
+  flex: 1 1 calc(25% - 25px); 
+  box-sizing: border-box;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.tag-item input[type="checkbox"] {
+  accent-color: #f2f2f2; 
+  margin-right: 10px; 
+}
+
+.buscar_tags{
+  background: #ffda4e;
+  border-radius: 7.82px;
+  width: 12.47%;
+  height: 10.86%;
+  position: absolute;
+  left: 83.96%;
+  border: none;
+  font-family: "Poppins";
+  
+}
+
+</style>

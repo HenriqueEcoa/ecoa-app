@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+.error-404,
+.error-404 * {
+  box-sizing: border-box;
+}
+.error-404 {
+  background: #ffffff;
+  height: 883px;
+  position: relative;
+  overflow: hidden;
+}
+.head {
+  background: #f2f2f2;
+  border-style: solid;
+  border-color: #f2f2f2;
+  border-width: 0px 0px 1px 0px;
+  padding: 8px 98px 8px 98px;
+  width: 1440px;
+  height: 72px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  overflow: hidden;
+}
+.logo {
+  width: 151px;
+  height: 46px;
+  position: absolute;
+  left: 644px;
+  top: 13px;
+  overflow: hidden;
+}
+.vector {
+  width: 100.22%;
+  height: 96.08%;
+  position: absolute;
+  right: 79.64%;
+  left: 0.14%;
+  bottom: 1.96%;
+  top: 1.96%;
+  overflow: visible;
+}
+.capit {
+  color: #0b1b3d;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  font-size: 32px;
+  line-height: 17.3px;
+  letter-spacing: 0.36px;
+  font-weight: 400;
+  position: absolute;
+  right: 0%;
+  left: 27.81%;
+  width: 72.19%;
+  bottom: 13.04%;
+  top: 15.22%;
+  height: 71.74%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-text-stroke: 0.75px #0b1b3d;
+}
+.nome {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-4138 {
+  background: #005a7f;
+  border-radius: 10px;
+  width: 13.4%;
+  height: 4.87%;
+  position: absolute;
+  right: 43.33%;
+  left: 43.26%;
+  bottom: 14.72%;
+  top: 80.41%;
+}
+.voltar-ao-in-cio {
+  color: #f2f2f2;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+  position: absolute;
+  right: 45.21%;
+  left: 45.14%;
+  width: 9.65%;
+  bottom: 15.63%;
+  top: 81.31%;
+  height: 3.06%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.final-error-4040001-1 {
+  width: 373px;
+  height: 373px;
+  position: absolute;
+  left: 522px;
+  top: 155px;
+  object-fit: cover;
+}
+.ops-n-o-encontramos-essa-p-gina {
+  color: #0b1b3d;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  font-size: 36px;
+  line-height: 30px;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+  position: absolute;
+  right: 34.24%;
+  left: 34.17%;
+  width: 31.6%;
+  bottom: 30.35%;
+  top: 53.19%;
+  height: 6.46%;
+}

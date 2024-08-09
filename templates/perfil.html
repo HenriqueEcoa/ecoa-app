@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_perfil.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css">
+    <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.min.js"></script>
+</head>
+<body>
+    <div class="perfil">
+        <div class="paulo">
+            {% include "components/nav.html" %}
+        </div>
+        {% include "components/carregamento.html" %}
+        {% include "components/concluido.html" %}
+        {% include "components/pop.html" %}
+
+        <!-- Formulário para upload de imagem -->
+        <form id="imageUploadForm" enctype="multipart/form-data">
+            <div class="upload-section">
+                <div class="profile-picture-container">
+                    <img src="{{ url_for('get_profile_picture', user_id=current_user.id) }}" alt="Profile Picture" class="profile-picture" id="profilePicture">
+                    <input type="file" name="profile_picture" id="profile_picture" accept="image/*" onchange="uploadImage()" aria-label="Upload Profile Picture">
+                </div>
+            </div>
+        </form>
+
+        <!-- Formulário para atualização de perfil -->
+        <form id="profileForm" action="{{ url_for('update_profile') }}" method="POST">
+            <!-- Campos do formulário -->
+            <div class="nome">
+                <div class="overlap-3">
+                    <input type="text" class="text-wrapper-5" name="nome" id="nome" value="{{ user.nome }}">
+                </div>
+                <div class="text-wrapper-6">Nome</div>
+            </div>
+            
+            <div class="sobrenome">
+                <div class="overlap-3">
+                    <input type="text" class="text-wrapper-7" name="sobrenome" id="sobrenome" value="{{ user.username }}">
+                </div>
+                <div class="text-wrapper-6">Username</div>
+            </div>
+
+            <div class="cargo">
+                <div class="overlap-3">
+                    <input class="text-wrapper-8" value="{{ user.cargo or 'Cargo' }}"/>
+                </div>
+                <div class="text-wrapper-6">Cargo</div>
+            </div>
+            <div class="setor">
+                <div class="overlap-3">
+                    <input class="text-wrapper-9" value="{{ user.setor or 'Setor' }}"/>
+                </div>
+                <div class="text-wrapper-6">Setor</div>
+            </div>
+       
+            <div class="senha">
+                <div class="overlap-3">
+                    <input type="password" class="text-wrapper-5" name="senha" id="senha" placeholder="******">
+                </div>
+                <div class="text-wrapper-6">Senha</div>
+            </div>
+            <div class="confirme">
+                <div class="overlap-3">
+                    <input type="password" class="text-wrapper-7" name="confirmar_senha" id="confirmar_senha" placeholder="******">
+                </div>
+                <div class="text-wrapper-6">Confirme a senha</div>
+            </div>
+            
+            <div class="e-mail">
+                <div class="overlap-4">
+                    <div class="rectangle"></div>
+                    <img class="icon-tabler-icons-2" src="static/imagem/fotomail.svg">
+                    <div class="group">
+                        <div class="overlap-group-2">
+                            <img class="icon" src="static/imagem/icon.svg">
+                            <input type="email" class="text-wrapper-10" name="email" id="email" value="{{ user.email }}">
+                        </div>
+                        <div class="text-wrapper-6">E-mail</div>
+                    </div>
+                    <div class="frame-wrapper">
+                        <div class="frame">
+                            <div class="text-wrapper-11">exemplo_email@gmail.com</div>
+                            <div class="text-wrapper-12">1 mês</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="salvar">
+                <div class="div-wrapper">
+                    <button type="submit" class="text-wrapper-13">Salvar</button>
+                </div>
+            </div>
+        </form>
+
+        {% include "components/rodape.html" %}
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+        function uploadImage() {
+    var formData = new FormData(document.getElementById('imageUploadForm'));
+
+    fetch('/upload_profile_picture', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => {
+        if (response.redirected) {
+            // Se o servidor redirecionar, recarregue a página
+            window.location.href = response.url;
+        } else {
+            return response.json();
+        }
+    })
+    .then(data => {
+        if (data && !data.success) {
+            alert('Erro ao carregar a imagem: ' + data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+        alert('Erro ao carregar a imagem. Tente novamente.');
+    });
+}
+
+
+    </script>
+        
+</body>
+</html>

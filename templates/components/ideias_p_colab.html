@@ -1,0 +1,13 @@
+
+<div class="linha-1">
+    {% for idea in ideas|reverse %}
+        <a href="/ideia_pagina/{{ idea[0] }}?color={{ loop.index % 3 }}" style="text-decoration: none;">
+            <div class="card cardcolor{{ loop.index % 3 }}">
+                {% if idea[1] == current_user.username %}
+                    <img src="{{ url_for('static', filename='imagem/macro.svg') }}" alt="Imagem do Card"/>
+                {% endif %}
+                <p class="titulo_card">{{ idea[5] }}</p>
+            </div>
+        </a>
+    {% endfor %}
+</div>

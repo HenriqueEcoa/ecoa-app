@@ -1,0 +1,19 @@
+<div class="head">
+  <div class="logo">
+      <a href="/ideia">
+          <img class="component-12" style="cursor: pointer;" src="{{ url_for('static', filename='imagem/logo.svg') }}" />
+      </a>
+  </div>
+  <div class="cta" onclick="openModal()">
+      <p class="envie-sua-ideia">Envie sua ideia</p>
+      <img class="add" src="{{ url_for('static', filename='imagem/add-2.svg') }}" />
+  </div>
+  <div class="perfil">
+      <img class="component-11" onclick="notificacao()" src="{{ url_for('static', filename='imagem/component 11.svg') }}" />
+      <a href="{{ url_for('perfil') }}">
+        <img src="{{ url_for('get_profile_picture', user_id=current_user.id) }}"  class="ellipse-1702" alt="Profile Picture" class="profile-picture" id="profilePicture">
+      </a>
+  </div>
+</div>
+
+

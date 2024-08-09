@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_pagina.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css">
+    <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <title>Página de Ideias</title>
+</head>
+<body>
+    <div class="paulo">    
+       {% include "components/nav.html" %}
+    </div>
+
+    {% include "components/carregamento.html" %}
+    {% include "components/concluido.html" %}
+    {% include "components/pop.html" %}
+    {% include "components/deleta.html" %}
+    {% include "components/colab_pergunt.html" %}
+    {% include "components/notificacao.html"%}
+
+    <div class="abrir-ideia">
+        <a href="/minha_ideias"><img class="volta" src="{{ url_for('static', filename='imagem/volta.svg') }}"></a>
+        <div class="div">
+            <div class="titulo-e-sub">
+                <p class="text-wrapper">{{ idea[5] }}</p>
+                <br>
+            </div>
+            <div class="overlap" >
+                <div class="retangulo-azul">
+                        <div class="overlap-group resumocolor{{color}}">
+                        <div class="text-wrapper-2">Resumo</div>
+                        <div class="overlap-2">
+                            <div class="flexcontainer">
+                                <p class="text">
+                                    <span class="span">{{ idea[11] }}<br/></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% if idea[1] == current_user.username %}
+                    {% set edit_icon = 'editar.svg' if color == '0' else 'editar-2.svg' %}
+                    {% set delete_icon = 'delete.svg' if color == '0' else 'delete-2.svg' %}
+                    <div class="botes">
+                        <a href="/estruturar/{{ idea[0] }}">
+                            <img class="vector" src="{{ url_for('static', filename='imagem/' ~ edit_icon) }}" alt="Edit" />
+                        </a>
+                        <div onclick="deletar()">
+                            <img class="delete" src="{{ url_for('static', filename='imagem/' ~ delete_icon) }}" alt="Delete" />
+                        </div>
+                    </div>
+                {% else %}
+                    {% set mao_icon = 'mao.svg' if color == '0' else 'mao-2.svg' %}
+                    <div class="botes">
+                        <div onclick="opencolab_per()">
+                            <img class="vector" src="{{ url_for('static', filename='imagem/' ~ mao_icon) }}" alt="Interact" />
+                        </div>
+                    </div>
+                {% endif %}
+
+
+
+            </div>
+        </div>
+    </div>
+    
+
+    {% include "components/ideias_p_colab.html"%}
+    {% include "components/rodape.html" %}
+    
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
